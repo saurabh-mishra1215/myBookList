@@ -1,0 +1,73 @@
+
+## Book Tracking Application Documentation
+
+This documentation provides an overview of the code for a simple book tracking application. 
+The application allows users to add and remove books from a list. The code is written in JavaScript and consists of several classes and event listeners. 
+Below is a detailed explanation of each component and its functionality.
+
+### Book Class
+The `Book` class represents a book object with three properties: `title`, `author`, and `isbn`. It has a constructor that initializes these properties when a new 
+`Book` object is created.
+
+### UI Class
+The `UI` class handles UI-related tasks, such as displaying books, adding books to the UI, deleting books from the UI, showing alerts, and clearing input fields. 
+It consists of several static methods:
+
+- `displayBooks()`: This method retrieves the list of books from the `Store` class and displays them in the UI. It is called when the DOM content has finished 
+loading.
+
+- `addBookToList(book)`: This method takes a `Book` object as input and adds it to the UI by creating a new row in the book list table.
+
+- `deleteBook(el)`: This method is triggered when the user clicks the delete button on a book. It removes the corresponding book row from the UI.
+
+- `showAlert(message, className)`: This method displays an alert message with the specified text and CSS class. It is used to show success or error messages 
+to the user.
+
+- `clearFields()`: This method clears the input fields in the book form.
+
+### Store Class
+The `Store` class handles storage-related tasks using the browser's `localStorage`. It provides three static methods:
+
+- `getBooks()`: This method retrieves the list of books from `localStorage` and returns it as an array. If no books are stored, it returns an empty array.
+
+- `addBook(book)`: This method takes a `Book` object as input, retrieves the current list of books from `localStorage`, adds the new book to the list, 
+and stores the updated list back in `localStorage`.
+
+- `removeBook(isbn)`: This method takes an ISBN as input, retrieves the current list of books from `localStorage`, finds the book with the matching ISBN, 
+removes it from the list, and stores the updated list back in `localStorage`.
+
+### Event Listeners
+The code includes three event listeners:
+
+- `DOMContentLoaded`: This event listener is triggered when the DOM content has finished loading. It calls the `displayBooks()` method from the `UI` 
+class to populate the UI with books stored in `localStorage`.
+
+- `submit`: This event listener is triggered when the user submits the book form. It captures the form submission, retrieves the input values for title, 
+author, and ISBN, validates the input, creates a new `Book` object, adds the book to the UI using the `addBookToList()` method from the `UI` class, stores the book using the `addBook()` method from the `Store` class, shows a success message using the `showAlert()` method from the `UI` class, and clears the input fields.
+
+- `click`: This event listener is triggered when the user clicks on the book list. It captures the click event on the delete button, removes the book from the UI 
+using the `deleteBook()` method from the `UI` class, removes the book from storage using the `removeBook()` method from the `Store` class, and shows a success 
+message using the `showAlert()` method from the `UI` class.
+
+### Usage
+To use the book tracking application, follow these steps:
+
+1. Include the JavaScript code in your HTML file.
+
+2. Create an HTML table with an `id` of "book-list" to display the list of books.
+
+3. Create an HTML form with an `id` of "book-form" containing input fields for title, author, and ISBN.
+
+4. Add event listeners to the appropriate elements, as described above.
+
+5. When the page loads, the stored books will be displayed in the UI.
+
+6. Users can add new books by filling in the form fields and clicking the submit button. Validation ensures that all fields are filled in.
+
+7. Users can delete books by clicking the delete button next to each book in the list.
+
+8. Success and error messages will be displayed to provide feedback to the user.
+
+### Summary
+The book tracking application allows users to manage a list of books by adding and removing them from the UI. The `Store` class handles storage using 
+`localStorage`, while the `UI` class handles UI-related tasks. The code provides a basic implementation for managing books in the browser and can be extended further to add more features or integrate with a server-side backend.
